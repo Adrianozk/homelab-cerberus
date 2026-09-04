@@ -40,12 +40,14 @@ Os workloads são agrupados por função para evitar que a documentação se tor
 | Operação e automação | Portainer, Semaphore e Watchtower |
 | Bancos de dados | PostgreSQL, MariaDB, Redis e TimescaleDB |
 | Acesso e publicação | Traefik, Guacamole, RustDesk e WireGuard |
-| Arquivos e conteúdo | File Browser, Jellyfin e Plex |
+| Mídia e conteúdo | Radarr, Sonarr, Bazarr, Prowlarr, Jellyfin e Plex |
 | Automação residencial | Home Assistant OS em VM e serviços de integração |
+| Jogos e experimentação | Crafty Controller, Velocity e servidores Purpur |
 | Aplicações e dados | WordPress, pipelines próprios e outros serviços self-hosted |
 
 ## Observações
 
 - As versões exatas não são tratadas como característica permanente do projeto, pois acompanham a manutenção do ambiente.
 - O inventário não representa alta disponibilidade dos serviços; o failover documentado é o da conectividade com a Internet.
+- A plataforma Minecraft consta como workload experimental pausado, não como serviço atualmente oferecido a jogadores.
 - IPv6 não faz parte do escopo atual do projeto.
