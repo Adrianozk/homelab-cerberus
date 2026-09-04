@@ -26,6 +26,22 @@ O InfluxDB recebe métricas produzidas por serviços e coletores; o Grafana forn
 
 O mergerfs atende ao desenho atual porque agrega discos de capacidades e filesystems distintos com baixa barreira de migração. O trade-off é não oferecer, sozinho, a redundância e a integridade ponta a ponta esperadas de um pool ZFS.
 
+### Hardlinks no pipeline de mídia
+
+As importações de mídia utilizam hardlinks quando origem e destino estão no mesmo filesystem. Isso permite que a aplicação de download e os servidores de mídia referenciem o mesmo conteúdo sem duplicar os dados. Em um pool mergerfs, a posição física do arquivo continua relevante: hardlinks não atravessam filesystems, mesmo quando os caminhos aparecem sob o mesmo namespace agregado.
+
+### Backups em camadas para workloads de jogos
+
+Os perfis do Crafty foram distribuídos entre armazenamento rápido e o pool de capacidade. Para os servidores principais, o fluxo foi configurado com avisos aos usuários, parada controlada, arquivo compactado e reinicialização. A inspeção encontrou aproximadamente **19 GiB de backups históricos** nos dois destinos, evidenciando a execução real dessas rotinas.
+
+Os agendamentos estão desativados no estado atual porque a plataforma experimental foi pausada. A documentação diferencia a automação configurada no passado do que está em execução hoje.
+
+### Pausa orientada por capacidade
+
+Durante o teste da plataforma Minecraft, o proxy, o lobby e dois backends ativos ocuparam cerca de **10,5 GiB dos 32 GiB** disponíveis no host. Como o Cerberus também sustenta serviços de dados, automação residencial, observabilidade e mídia, manter essa carga permanentemente reduziria a margem operacional do restante do ambiente.
+
+A plataforma foi pausada antes da abertura para usuários reais. A decisão priorizou previsibilidade e capacidade do homelab, mantendo configurações e backups como base para uma retomada futura com limites de memória e escopo revistos.
+
 ## Roadmap
 
 - adicionar um terceiro disco de 4 TB e planejar a migração das cargas adequadas para ZFS RAIDZ1;

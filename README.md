@@ -83,6 +83,22 @@ Uma descrição mais detalhada está em [Arquitetura](docs/architecture.md).
 - **Operação:** Portainer para apoio ao ciclo de vida dos containers e Semaphore para automações e tarefas recorrentes.
 - **Persistência:** workloads e dados distribuídos entre NVMe e um pool mergerfs sobre discos locais.
 
+## Workloads em destaque
+
+### Plataforma Minecraft multi-servidor
+
+Um dos experimentos mais completos executados no Cerberus foi uma plataforma Minecraft gerenciada pelo Crafty Controller. A arquitetura combinava um proxy Velocity, lobby dedicado e múltiplos backends Purpur, com entrada para clientes Java e Bedrock por Geyser e Floodgate.
+
+Além do roteamento entre servidores, o ambiente reuniu controle de permissões, proteção e auditoria do mundo, integração com Discord, mapas web e rotinas de backup. Em um teste de capacidade, proxy, lobby e dois backends consumiram cerca de **10,5 GiB de RAM**; por isso, a plataforma foi pausada antes de ser oferecida a jogadores reais. Essa decisão e o estado experimental são partes importantes do estudo, não limitações escondidas.
+
+Veja a documentação em [Plataforma Minecraft](docs/minecraft-platform.md).
+
+### Automação e distribuição de mídia
+
+O pipeline de mídia integra indexação, gerenciamento de catálogo, metadados e legendas, coordenação de downloads e reprodução com Jellyfin e Plex. Radarr, Sonarr, Bazarr e Prowlarr trabalham sobre armazenamento compartilhado, com importação baseada em hardlinks para evitar cópias desnecessárias no mesmo filesystem.
+
+Esse workload também serviu para exercitar mapeamento consistente de volumes entre containers, diagnóstico de importações, deduplicação e organização de dados sobre o pool mergerfs.
+
 ## Projetos derivados
 
 | Projeto | Papel no homelab |
@@ -104,6 +120,7 @@ Veja o registro completo em [Decisões técnicas](docs/decisions.md).
 
 - [Arquitetura e fluxos](docs/architecture.md)
 - [Inventário sanitizado](docs/inventory.md)
+- [Plataforma Minecraft](docs/minecraft-platform.md)
 - [Decisões técnicas e roadmap](docs/decisions.md)
 - [Política de segurança da documentação](SECURITY.md)
 
